@@ -1,4 +1,6 @@
+using AutoMapper;
 using IEduca.Persistence;
+using IEduca.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +33,9 @@ namespace IEduca.Api
             string mySqlConnectionStr = Configuration.GetConnectionString("Connection");
             services.AddDbContext<AppDbContext>(options => options.UseMySql(mySqlConnectionStr, ServerVersion.AutoDetect(mySqlConnectionStr)));
             services.AddControllers();
+            services.AddTransient<IAlbumService, AlbumService>();
+            services.AddTransient<ICancionService, CancionService>();
+
             services.AddAutoMapper(typeof(Startup));
 
             services.AddCors(options =>
