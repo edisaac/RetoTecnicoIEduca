@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using IEduca.Model;
 using IEduca.Model.Dto;
 using IEduca.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,9 @@ namespace IEduca.Service
     {
 
         Task<List<AlbumListDto>> GetAll();
-        Task<AlbumSingleDto> GetById(int id);
+        Task<AlbumDto> GetById(int id);
+        Task<AlbumDto> Create(AlbumCreateDto model);
+
     }
 
     public class AlbumService : IAlbumService
@@ -23,7 +26,6 @@ namespace IEduca.Service
 
         private readonly IMapper _mapper;
 
-
         public AlbumService(AppDbContext context, IMapper mapper)
         {
             _context = context;
@@ -31,15 +33,26 @@ namespace IEduca.Service
         }
 
 
-        public async Task<AlbumSingleDto> GetById(int id)
+        public async Task<AlbumDto> GetById(int id)
         {
-            return _mapper.Map<AlbumSingleDto>(
+            return _mapper.Map<AlbumDto>(
                 await _context.Albumes
                     .Include(x => x.Canciones)
                     .SingleAsync(x => x.Id == id)
             );
         }
 
+
+        public async Task<AlbumDto> Create(AlbumCreateDto model)
+        {
+            var entry = _mapper.Map<Album>(model);
+            await _context.AddAsync(entry);
+            await _context.SaveChangesAsync();
+
+            return _mapper.Map<AlbumDto>(
+                await GetById(entry.Id)
+            );
+        }
         public async Task<List<AlbumListDto>> GetAll()
         {
             try

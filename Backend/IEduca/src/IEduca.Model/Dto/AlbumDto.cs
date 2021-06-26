@@ -15,10 +15,12 @@ namespace IEduca.Model.Dto
         public string Nombre { get; set; }
         public string Artista { get; set; }
         public string Portada { get; set; }
+        public List<CancionSingleDto> Canciones { get; set; }
     }
 
-    public class AlbumSingleDto
+    public class AlbumDto
     {
+        public int Id { get; set; }
         public string Nombre { get; set; }
         public string Artista { get; set; }
         public string Portada { get; set; }

@@ -26,11 +26,21 @@ namespace IEduca.Api.Controllers
 
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<AlbumSingleDto>> GetById(int id)
+        public async Task<ActionResult<AlbumDto>> GetById(int id)
         {
             return await _albumService.GetById(id);
         }
 
+        [HttpPost]
+        public async Task<ActionResult> Create(AlbumCreateDto model)
+        {
+            var result = await _albumService.Create(model);
 
+            return CreatedAtAction(
+                "GetById",
+                new { id = result.Id },
+                result
+            );
+        }
     }
 }
