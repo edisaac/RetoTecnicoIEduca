@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IEduca.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class CancionController : ControllerBase
     {
