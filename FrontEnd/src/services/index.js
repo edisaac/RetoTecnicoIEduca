@@ -1,5 +1,5 @@
 import Axios from 'axios'
-import albumService from './AlbumService.js';
+import albumService from './AlbumService';
 
 
 Axios.defaults.headers.common.Accept = 'application/json';

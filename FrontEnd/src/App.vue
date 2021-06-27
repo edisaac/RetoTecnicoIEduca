@@ -3,9 +3,7 @@
     <section class="hero is-light is-bold is-fullheight">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title">Music Store</h1>
-          <h2 class="subtitle">Selecciona tu album favorito...</h2>
-          <album></album>
+          <router-view></router-view>
         </div>
       </div>
     </section>
@@ -17,18 +15,16 @@
   </div>
 </template>
 <script>
-import Album from "./components/Album.vue";
+
 
 export default {
   name: "App",
   data() {
-    return {
-      album: "album"
-
-    };
+    
+    
   },
   components: {
-    Album,
+   
   },
   mounted() {},
 };
