@@ -1,5 +1,7 @@
 # Proyecto para IEduca
 
+#usar esta rama MASTER
+
 #1-Ejecutar script de la carpeta SQL
 
 #2-Compilar el backend de net core
@@ -9,3 +11,4 @@
 #4-Levantar la API
 
 #5-Colocarse dentro del proyecto frontend y ejecutar npm install posterior levantar con npm run serve
+
